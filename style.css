@@ -1,0 +1,122 @@
+body {
+	font-family: 'Arial', sans-serif;
+	color: #fff;
+}
+
+.container {
+	text-align: center;
+}
+
+.btn {
+	box-sizing: border-box;
+	width: 250px;
+	height: 40px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+
+	font-size: 18px;
+	line-height: 24px;
+	color: #fff;
+
+	background-color: rgba(123, 2, 17, 0.8);
+
+	border: 2px solid #eee;
+	border-radius: 6px;
+}
+
+.btn-save {
+	background-color: rgba(2, 123, 17, 0.7);
+
+	animation: btnSaveAppear 0.5s;
+}
+
+.btn:hover {
+	cursor: pointer;
+
+	color: #000;
+	background-color: #fff;
+
+	transition: color 0.3s, background-color 0.25s;
+}
+
+.line {
+	box-sizing: border-box;
+	width: 600px;
+	padding: 10px;
+	margin: 10px auto;
+
+	text-align: center;
+
+	background-color: rgba(12, 155, 43, 0.8);
+	border-radius: 12px;
+}
+
+.data .line{
+	animation: pAppear 0.8s;
+}
+
+.name,
+.age,
+.city {
+	display: inline-block;
+	padding: 6px;
+	margin-right: 10px;
+
+	border: 2px solid #eee;
+	border-radius: 4px;
+}
+
+@keyframes pAppear {
+	0% {
+		transform: translateY(-200px)
+	}
+
+	50% {
+		transform: translateY(20px)
+	}
+}
+
+@keyframes btnSaveAppear {
+	0% {
+		transform: translateX(200px);
+	}
+}
+
+.context-menu {
+	position: absolute;
+	top: 50px;
+	left: 0;
+	z-index: 99;
+
+	box-sizing: border-box;
+	width: 250px;
+
+	background-color: rgba(0,0,230,0.45);
+	border-radius: 2px;
+
+	display: none;
+}
+
+.context-menu button {
+	display: block;
+	width: 80%;
+	margin: 8px auto;
+
+	font-size: 18px;
+	line-height: 22px;
+
+	cursor: pointer;
+}
+
+input {
+	width: 60px;
+	padding: 3px;
+}
+
+.hideElement {
+	display: none;
+}
+
+.showElement {
+	display: block;
+}
