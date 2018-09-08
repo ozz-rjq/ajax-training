@@ -7,10 +7,10 @@ let line = document.querySelector('.line');
 this.data;
 
 // context menu
-let contextMenu = document.querySelector('.context-menu');
-let editBtn = contextMenu.querySelector('.btn-edit');
-let removeBtn = contextMenu.querySelector('.btn-remove');
-let selectedItem;
+// let contextMenu = document.querySelector('.context-menu');
+// let editBtn = contextMenu.querySelector('.btn-edit');
+// let removeBtn = contextMenu.querySelector('.btn-remove');
+// let selectedItem;
 
 // load data using asynchronous ajax call
 buttonLoad.addEventListener('click', () => {
@@ -43,7 +43,7 @@ buttonLoad.addEventListener('click', () => {
 
 		xhr.send();
 	} else {
-		alert('Дані уже завантажені!');
+		alert('Data has already been loaded!');
 	}
 });
 
@@ -51,6 +51,7 @@ buttonLoad.addEventListener('click', () => {
 function addLine(line) {
 	let lineMarkup = document.createElement('div');
 	lineMarkup.classList.add('line');
+	lineMarkup.classList.add('read-mode');
 
 	let p = document.createElement('p');
 
@@ -102,38 +103,38 @@ dataBlock.addEventListener('contextmenu', ($) => {
 	}
 }, true);
 
-removeBtn.addEventListener('click', e => {
-	if (selectedItem) {
-		let property = selectedItem.innerHTML.split(':')[0];
-		let value = selectedItem.innerHTML.split(':')[1].trim();
+// removeBtn.addEventListener('click', e => {
+// 	if (selectedItem) {
+// 		let property = selectedItem.innerHTML.split(':')[0];
+// 		let value = selectedItem.innerHTML.split(':')[1].trim();
 
-		console.log(property);
-		console.log(value);
+// 		console.log(property);
+// 		console.log(value);
 
-		let result = this.data.filter(item => {
-			return item[property] === value;
-		});
+// 		let result = this.data.filter(item => {
+// 			return item[property] === value;
+// 		});
 
-		console.log(result);
+// 		console.log(result);
 
-		selectedItem.remove();
-		buttonSave.classList.remove('hideElement');
-	}
-});
+// 		selectedItem.remove();
+// 		buttonSave.classList.remove('hideElement');
+// 	}
+// });
 
-editBtn.addEventListener('click', e => {
-	if (selectedItem && buttonSave.classList.contains('hideElement')) {
-		let textToEdit = selectedItem.outerText.split(':')[1].trim();
+// editBtn.addEventListener('click', e => {
+// 	if (selectedItem && buttonSave.classList.contains('hideElement')) {
+// 		let textToEdit = selectedItem.outerText.split(':')[1].trim();
 
-		console.log(textToEdit);
+// 		console.log(textToEdit);
 
-		selectedItem.innerText = selectedItem.outerText.split(':')[0] + ': ';
+// 		selectedItem.innerText = selectedItem.outerText.split(':')[0] + ': ';
 
-		selectedItem.appendChild(document.createElement('input'));
+// 		selectedItem.appendChild(document.createElement('input'));
 
-		buttonSave.classList.remove('hideElement');
-	}
-});
+// 		buttonSave.classList.remove('hideElement');
+// 	}
+// });
 
 // POST
 buttonSave.addEventListener('click', () => {
@@ -157,14 +158,14 @@ buttonSave.addEventListener('click', () => {
 });
 
 // hide custom context menu on next events:
-document.addEventListener('click', (e) => {
-	if (e.target.tagName !== 'SPAN' && contextMenu.classList.contains('showElement')) {
-		contextMenu.classList.remove('showElement');
-	}
-});
+// document.addEventListener('click', (e) => {
+// 	if (e.target.tagName !== 'SPAN' && contextMenu.classList.contains('showElement')) {
+// 		contextMenu.classList.remove('showElement');
+// 	}
+// });
 
-document.addEventListener('contextmenu', (e) => {
-	if (e.target.tagName !== 'SPAN' && contextMenu.classList.contains('showElement')) {
-		contextMenu.classList.remove('showElement');
-	}
-});
+// document.addEventListener('contextmenu', (e) => {
+// 	if (e.target.tagName !== 'SPAN' && contextMenu.classList.contains('showElement')) {
+// 		contextMenu.classList.remove('showElement');
+// 	}
+// });
