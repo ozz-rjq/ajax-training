@@ -51,9 +51,9 @@ buttonLoad.addEventListener('click', () => {
 function addLine(line) {
 	let lineMarkup = document.createElement('div');
 	lineMarkup.classList.add('line');
-	lineMarkup.classList.add('read-mode');
 
 	let p = document.createElement('p');
+	p.classList.add('read-mode');
 
 	let nameNode = document.createElement('span');
 	nameNode.classList.add('name');
@@ -81,11 +81,41 @@ function addLine(line) {
 
 	lineMarkup.appendChild(p);
 
+	let editMarkup = document.createElement('p');
+	editMarkup.classList.add('edit-mode', 'hideElement');
+	editMarkup.innerHTML = `
+				<input class="name" type="text">
+				<input class="age" type="text">
+				<input class="city" type="text">
+				<button class="btn btn-cancel" onclick='cancelEditing(this);'>Cancel</button>
+	`
+
+	lineMarkup.appendChild(editMarkup)
+
 	dataBlock.appendChild(lineMarkup);
 }
 
-function editLine() {
-	console.log('edit');
+function editLine(event) {
+	let targetLine = event.target.parentNode.parentNode;
+	console.log(targetLine);
+
+	targetLine.querySelector('.read-mode').classList.add('hideElement');
+	targetLine.querySelector('.edit-mode').classList.remove('hideElement');
+
+	// let allLines = document.querySelectorAll('.line.edit-mode');
+	// let readLines = document.querySelectorAll('.line.read-mode');
+
+	// for (let i = 0; i < allLines.length; i++) {
+	// 	allLines[i].classList.remove('hideElement');
+	// 	readLines[i].classList.add('hideElement');
+	// }
+}
+
+function cancelEditing(btn) {
+	let targetLine = btn.parentNode.parentNode;
+
+	targetLine.querySelector('.read-mode').classList.remove('hideElement');
+	targetLine.querySelector('.edit-mode').classList.add('hideElement');
 }
 
 // handle context menu

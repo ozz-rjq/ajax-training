@@ -32,7 +32,7 @@ body {
 
 .btn-edit {
 	background-color: rgba(13, 25, 17, 0.8);
-	
+
 	float: right;
 }
 
@@ -115,7 +115,7 @@ body {
 }
 
 input {
-	width: 60px;
+	width: 120px;
 	padding: 3px;
 }
 
