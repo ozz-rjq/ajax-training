@@ -30,6 +30,12 @@ body {
 	animation: btnSaveAppear 0.5s;
 }
 
+.btn-edit {
+	background-color: rgba(13, 25, 17, 0.8);
+	
+	float: right;
+}
+
 .btn:hover {
 	cursor: pointer;
 
@@ -41,7 +47,7 @@ body {
 
 .line {
 	box-sizing: border-box;
-	width: 600px;
+	width: 70%;
 	padding: 10px;
 	margin: 10px auto;
 

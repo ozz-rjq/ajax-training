@@ -66,13 +66,25 @@ function addLine(line) {
 	cityNode.classList.add('city');
 	cityNode.innerHTML = `city: ${line.city}.`
 
+	let btnNode = document.createElement('button');
+	btnNode.classList.add('btn');
+	btnNode.classList.add('btn-edit');
+	btnNode.innerHTML = `Edit`;
+
+	btnNode.addEventListener('click', editLine);
+
 	p.appendChild(nameNode);
 	p.appendChild(ageNode);
 	p.appendChild(cityNode);
+	p.appendChild(btnNode);
 
 	lineMarkup.appendChild(p);
 
 	dataBlock.appendChild(lineMarkup);
+}
+
+function editLine() {
+	console.log('edit');
 }
 
 // handle context menu
