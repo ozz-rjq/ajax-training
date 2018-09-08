@@ -3,6 +3,8 @@ let buttonSave = document.querySelector('.btn-save');
 let dataBlock = document.querySelector('.data');
 let line = document.querySelector('.line');
 
+buttonSave.addEventListener('click', saveData);
+
 // downloaded json will be stored here
 this.data;
 
@@ -84,9 +86,9 @@ function addLine(line) {
 	let editMarkup = document.createElement('p');
 	editMarkup.classList.add('edit-mode', 'hideElement');
 	editMarkup.innerHTML = `
-				<input class="name" type="text">
-				<input class="age" type="text">
-				<input class="city" type="text">
+				<input class="name" name="name" type="text" onchange="enableSaving();">
+				<input class="age" name="age" type="text" onchange="enableSaving();">
+				<input class="city" name="city" type="text" onchange="enableSaving();">
 				<button class="btn btn-cancel" onclick='cancelEditing(this);'>Cancel</button>
 	`
 
@@ -100,7 +102,18 @@ function editLine(event) {
 	console.log(targetLine);
 
 	targetLine.querySelector('.read-mode').classList.add('hideElement');
+	// get current values
+	let name = targetLine.querySelector('.read-mode span.name').innerHTML.split(':')[1].trim();
+	let age = targetLine.querySelector('.read-mode span.age').innerHTML.split(':')[1].trim();
+	let city = targetLine.querySelector('.read-mode span.city').innerHTML.split(':')[1].trim();
+	console.log(name);
+
 	targetLine.querySelector('.edit-mode').classList.remove('hideElement');
+	// set current values in inputs
+	targetLine.querySelector('.edit-mode input[name=name]').value = name;
+	targetLine.querySelector('.edit-mode input[name=age]').value = age;
+	targetLine.querySelector('.edit-mode input[name=city]').value = city;
+
 
 	// let allLines = document.querySelectorAll('.line.edit-mode');
 	// let readLines = document.querySelectorAll('.line.read-mode');
@@ -118,20 +131,45 @@ function cancelEditing(btn) {
 	targetLine.querySelector('.edit-mode').classList.add('hideElement');
 }
 
-// handle context menu
-dataBlock.addEventListener('contextmenu', ($) => {
-	let target = $.target;
+function enableSaving() {
+	console.log('test');
+	buttonSave.classList.remove('hideElement');
+}
 
-	if (target.tagName === 'P') {
-		$.preventDefault();
+function saveData() {
+	let allLines = document.querySelectorAll('.line');
 
-		selectedItem = target;
+	let data = [];
 
-		contextMenu.classList.toggle('showElement');
-		contextMenu.style.top = `${$.y}px`;
-		contextMenu.style.left = `${$.x}px`;
+	for (let i = 0; i < allLines.length; i++) {
+		console.log(allLines[i]);
+		let currentLine = allLines[i].querySelector('.edit-mode');
+		let obj = {
+			name: currentLine.querySelector('input[name=name]').value,
+			age: currentLine.querySelector('input[name=age]').value,
+			city: currentLine.querySelector('input[name=city]').value
+		}
+
+		data.push(obj);
 	}
-}, true);
+
+	console.log(data);
+}
+
+// handle context menu
+// dataBlock.addEventListener('contextmenu', ($) => {
+// 	let target = $.target;
+
+// 	if (target.tagName === 'P') {
+// 		$.preventDefault();
+
+// 		selectedItem = target;
+
+// 		contextMenu.classList.toggle('showElement');
+// 		contextMenu.style.top = `${$.y}px`;
+// 		contextMenu.style.left = `${$.x}px`;
+// 	}
+// }, true);
 
 // removeBtn.addEventListener('click', e => {
 // 	if (selectedItem) {
@@ -167,25 +205,25 @@ dataBlock.addEventListener('contextmenu', ($) => {
 // });
 
 // POST
-buttonSave.addEventListener('click', () => {
-	console.log('test');
+// buttonSave.addEventListener('click', () => {
+// 	console.log('test');
 
-	let xhr = new XMLHttpRequest();
+// 	let xhr = new XMLHttpRequest();
 
-	xhr.open('POST', './server');
+// 	xhr.open('POST', './server');
 
-	xhr.addEventListener('readystatechange', () => {
-		if (xhr.status !== 200) {
-			return;
-		}
+// 	xhr.addEventListener('readystatechange', () => {
+// 		if (xhr.status !== 200) {
+// 			return;
+// 		}
 
-		if (xhr.readyState === 4) {
-			console.log('loggg');
-		}
-	})
+// 		if (xhr.readyState === 4) {
+// 			console.log('loggg');
+// 		}
+// 	})
 
-	xhr.send(this.data);
-});
+// 	xhr.send(this.data);
+// });
 
 // hide custom context menu on next events:
 // document.addEventListener('click', (e) => {
