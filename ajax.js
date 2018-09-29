@@ -2,18 +2,11 @@
 	let buttonLoad = document.querySelector('.btn-load');
 	let buttonSave = document.querySelector('.btn-save');
 	let dataBlock = document.querySelector('.data');
-	let line = document.querySelector('.line');
 	
 	buttonSave.addEventListener('click', saveData);
 	
 	// downloaded json will be stored here
 	var data;
-	
-	// context menu
-	// let contextMenu = document.querySelector('.context-menu');
-	// let editBtn = contextMenu.querySelector('.btn-edit');
-	// let removeBtn = contextMenu.querySelector('.btn-remove');
-	// let selectedItem;
 	
 	// load data using asynchronous ajax call
 	buttonLoad.addEventListener('click', () => {
@@ -114,27 +107,6 @@
 		targetLine.querySelector('.edit-mode input[name=name]').value = name;
 		targetLine.querySelector('.edit-mode input[name=age]').value = age;
 		targetLine.querySelector('.edit-mode input[name=city]').value = city;
-	
-	
-		// let allLines = document.querySelectorAll('.line.edit-mode');
-		// let readLines = document.querySelectorAll('.line.read-mode');
-	
-		// for (let i = 0; i < allLines.length; i++) {
-		// 	allLines[i].classList.remove('hideElement');
-		// 	readLines[i].classList.add('hideElement');
-		// }
-	}
-	
-	function cancelEditing(btn) {
-		let targetLine = btn.parentNode.parentNode;
-	
-		targetLine.querySelector('.read-mode').classList.remove('hideElement');
-		targetLine.querySelector('.edit-mode').classList.add('hideElement');
-	}
-	
-	function enableSaving() {
-		console.log('test');
-		buttonSave.classList.remove('hideElement');
 	}
 	
 	function saveData() {
@@ -156,86 +128,4 @@
 	
 		console.log(data);
 	}
-	
-	// handle context menu
-	// dataBlock.addEventListener('contextmenu', ($) => {
-	// 	let target = $.target;
-	
-	// 	if (target.tagName === 'P') {
-	// 		$.preventDefault();
-	
-	// 		selectedItem = target;
-	
-	// 		contextMenu.classList.toggle('showElement');
-	// 		contextMenu.style.top = `${$.y}px`;
-	// 		contextMenu.style.left = `${$.x}px`;
-	// 	}
-	// }, true);
-	
-	// removeBtn.addEventListener('click', e => {
-	// 	if (selectedItem) {
-	// 		let property = selectedItem.innerHTML.split(':')[0];
-	// 		let value = selectedItem.innerHTML.split(':')[1].trim();
-	
-	// 		console.log(property);
-	// 		console.log(value);
-	
-	// 		let result = data.filter(item => {
-	// 			return item[property] === value;
-	// 		});
-	
-	// 		console.log(result);
-	
-	// 		selectedItem.remove();
-	// 		buttonSave.classList.remove('hideElement');
-	// 	}
-	// });
-	
-	// editBtn.addEventListener('click', e => {
-	// 	if (selectedItem && buttonSave.classList.contains('hideElement')) {
-	// 		let textToEdit = selectedItem.outerText.split(':')[1].trim();
-	
-	// 		console.log(textToEdit);
-	
-	// 		selectedItem.innerText = selectedItem.outerText.split(':')[0] + ': ';
-	
-	// 		selectedItem.appendChild(document.createElement('input'));
-	
-	// 		buttonSave.classList.remove('hideElement');
-	// 	}
-	// });
-	
-	// POST
-	// buttonSave.addEventListener('click', () => {
-	// 	console.log('test');
-	
-	// 	let xhr = new XMLHttpRequest();
-	
-	// 	xhr.open('POST', './server');
-	
-	// 	xhr.addEventListener('readystatechange', () => {
-	// 		if (xhr.status !== 200) {
-	// 			return;
-	// 		}
-	
-	// 		if (xhr.readyState === 4) {
-	// 			console.log('loggg');
-	// 		}
-	// 	})
-	
-	// 	xhr.send(data);
-	// });
-	
-	// hide custom context menu on next events:
-	// document.addEventListener('click', (e) => {
-	// 	if (e.target.tagName !== 'SPAN' && contextMenu.classList.contains('showElement')) {
-	// 		contextMenu.classList.remove('showElement');
-	// 	}
-	// });
-	
-	// document.addEventListener('contextmenu', (e) => {
-	// 	if (e.target.tagName !== 'SPAN' && contextMenu.classList.contains('showElement')) {
-	// 		contextMenu.classList.remove('showElement');
-	// 	}
-	// });
 })()
